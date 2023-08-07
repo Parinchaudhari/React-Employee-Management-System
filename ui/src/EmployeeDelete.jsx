@@ -24,14 +24,13 @@ export default class EmployeeDelete extends Component {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query, variables })
-    }).then(res =>res.json()).then(data=>{
-      console.log(data.data.deleteEmployee)
-      alert(data.data.deleteEmployee)
-      window.location.href = '/';
+    }).then(res => {
+      
     }).catch(error => {
       alert("Cannot Delete Data Try Again")
       console.log(error)
     })
+    window.location.href = '/';
 
   }
   render() {

@@ -35,7 +35,7 @@ const userschema= new Schema({
         required:true
     },
     currentstatus:{
-        type:String,
+        type:Number,
         required:true,
         default:1
     }
