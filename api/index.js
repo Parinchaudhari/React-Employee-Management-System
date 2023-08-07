@@ -61,24 +61,54 @@ async function addEmployee(_, { inp }) {
 }
 
 //update resolver
-async function updateEmployee(_, {inpup}) {
+async function updateEmployee(_, { inpup }) {
   // console.log("i am id"+id)
   console.log(inpup)
-   await employeeS.findByIdAndUpdate(inpup._id,inpup).then((e)=>{
+  await employeeS.findByIdAndUpdate(inpup._id, inpup).then((e) => {
     console.log("data updated")
-  }).catch((error)=>{
-    console.log("error"+error)
+  }).catch((error) => {
+    console.log("error" + error)
   })
   return inpup
 }
 //delete resolver
-async function deleteEmployee(_,{id}){
+// async function deleteEmployee(_,{id}){
+//   console.log(id)
+//   await employeeS.findByIdAndDelete(id).then((e)=>{
+//     console.log("deleted it")
+//   }).catch((error)=>{
+//     console.log("cannot dleet item"+error)
+//   })
+// }
+
+async function deleteEmployee(_, { id }) {
   console.log(id)
-  await employeeS.findByIdAndDelete(id).then((e)=>{
-    console.log("deleted it")
-  }).catch((error)=>{
-    console.log("cannot dleet item"+error)
-  })
+  //first find the data as per the id exists or not
+  let finddata = await employeeS.findById(id)
+  console.log(finddata)
+  console.log(finddata.currentstatus)
+  //checking the condtion if the data is present or not 
+  if (finddata) {
+    // checking the condtion if the employeeststus is active or not
+    if (finddata.currentstatus == "true" || finddata.currentstatus == "1") {
+      //sending the data back to the api request
+      return "Can’t Delete Employee –Status Active"
+    }
+    else {
+      //if the data exists deleting the record only if the employye sattus is in active
+      let del = await employeeS.findByIdAndDelete(id)
+      //sending the data back to the api request
+      if (del) {
+        return "Employee Deleted"
+      }
+      else {
+        return "Cannot Delete Employee Try Again"
+      }
+    }
+  }
+  else{
+    return "Such Employee Does Not Exists"
+  }
 }
 
 app.get('/', (res, req) => {

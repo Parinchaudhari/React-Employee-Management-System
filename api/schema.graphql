@@ -39,5 +39,5 @@ type Mutation {
   addEmployee(inp: inpEmployee!): Employee!
   setAboutMessage(message: String!): String
   updateEmployee(inpup:updateType!):Employee!
-  deleteEmployee(id:String!):String
+  deleteEmployee(id:String!):String!
 }
