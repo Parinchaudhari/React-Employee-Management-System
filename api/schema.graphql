@@ -1,0 +1,43 @@
+#graphql schema
+type Employee{
+  _id:String!
+  fname:String!
+  lname:String!
+  age:Int!
+  joindate:String!
+  title:String!
+  department:String!
+  employeetype:String!
+  currentstatus:String!
+}
+input inpEmployee{
+  fname:String!
+  lname:String!
+  age:Int!
+  joindate:String!
+  title:String!
+  department:String!
+  employeetype:String!
+}
+input updateType{
+  _id:String!
+  fname:String!
+  lname:String!
+  age:Int!
+  joindate:String!
+  title:String!
+  department:String!
+  employeetype:String!
+  currentstatus:String!
+}
+
+type Query{
+  about:String!
+  getAllEmp:[Employee!]!
+}
+type Mutation {
+  addEmployee(inp: inpEmployee!): Employee!
+  setAboutMessage(message: String!): String
+  updateEmployee(inpup:updateType!):Employee!
+  deleteEmployee(id:String!):String
+}
