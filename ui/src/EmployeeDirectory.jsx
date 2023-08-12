@@ -6,6 +6,7 @@ import { Route, Routes} from 'react-router-dom'
 import EmployeeUpdate from './EmployeeUpdate.jsx'
 import EmployeeDelete from './EmployeeDelete.jsx'
 import EmployeeFilter from './EmployeeFilter.jsx'
+import RetirementTable from './RetirementTable.jsx'
 //Employee Directory Component(Parent Component)
 export default class EmployeeDirectory extends Component {
 
@@ -61,14 +62,15 @@ export default class EmployeeDirectory extends Component {
                     {/* passing the data as pros of all empoyees to table component so that it can be dislayed in table  */}
                     {/* <EmployeeTable empdata={this.state.employees} /> */}
                     {/* <Link to="/create">Create Page</Link> */}
-                    ``
+                    
                     {/* Setting up routes and passing the data as props to the componenets */}
                     <Routes>
                         <Route path='/' element={<EmployeeTable empdata={this.state.employees} />}/>
                         <Route path='/create' element={<EmployeeCreate/>}/>
-                        <Route path='/update/:uid'  element={<EmployeeUpdate updateData={this.state.employees}/>}/>
+                        <Route path='/update/:uid'  element={<EmployeeUpdate/>}/>
                         <Route path='/delete/:uid'  element={<EmployeeDelete/>}/>
                         <Route path='/filter'  element={<EmployeeFilter filterData={this.state.employees}/>}/>
+                        <Route path='/RetirementTable'  element={<RetirementTable empdata={this.state.employees}/>}/>
                     </Routes>
             </>
         )

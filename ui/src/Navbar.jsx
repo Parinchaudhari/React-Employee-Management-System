@@ -13,6 +13,7 @@ export default class Navbar extends Component {
                 <Link className='sm-links'  to="/">Home</Link>
                 <Link  className='sm-links' to="/create">Create</Link>
                 <Link  className='sm-links' to="/filter">Filter</Link>
+                <Link  className='sm-links' to="/RetirementTable">Retiries</Link>
 
                 </div>
             </div>

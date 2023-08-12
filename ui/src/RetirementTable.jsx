@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 //Employee Table Component
 export default class EmployeeTable extends Component {
   render() {
+    console.log("retirmnrt")
+    console.log(this.props.empdata)
     return (
       // table for the display of data
       <div className="center">

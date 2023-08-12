@@ -34,6 +34,8 @@ input updateType{
 type Query{
   about:String!
   getAllEmp:[Employee!]!
+  getUniqueEmp(ip:String!):Employee!
+  getRetiries:[Employee]
 }
 type Mutation {
   addEmployee(inp: inpEmployee!): Employee!

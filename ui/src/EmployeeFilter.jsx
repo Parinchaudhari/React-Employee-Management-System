@@ -34,13 +34,14 @@ export default class EmployeeFilter extends Component {
     }
     //setting the state value with the data of emloyee got as props from the main component before the component get mount
     componentDidMount() {
+        // console.log("called filetr"+this.props.filterData)
         this.setState({
             data: this.props.filterData,
             fdata: this.props.filterData
         })
     }
     render() {
-        console.log(this.state)
+        // console.log(this.state)
         return (
             <>
                 <div className="filter-form">

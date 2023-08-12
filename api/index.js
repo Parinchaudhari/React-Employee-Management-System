@@ -24,7 +24,9 @@ let empmessage = "Employye Data Fetched"
 const resolvers = {
   Query: {
     about: () => empmessage,
-    getAllEmp: getEmpData
+    getAllEmp: getEmpData,
+    getUniqueEmp:getuniqueemp,
+    getRetiries:getretiries
   },
   Mutation: {
     setAboutMessage,
@@ -43,6 +45,30 @@ async function getEmpData() {
   // retruning the data fetched
   return data
 }
+
+//query resolver to get details of each employeee as per id
+async function getuniqueemp(_,{ip}){
+  console.log(ip)
+  let unq=await employeeS.findById(ip)
+  console.log(unq)
+  if(unq){
+    return unq
+  }
+  else{
+    return {error:"data not found"}
+  }
+
+}
+
+//Query to get all the data for employee where age it greter than equal to 65
+async function getretiries(){
+    let ret=await employeeS.find({ age: { $gte: 65 } })
+    if(ret){
+      return ret
+    }
+}
+
+
 //resolver fucnton used to set the message
 function setAboutMessage(_, { message }) {
   return empmessage = message
