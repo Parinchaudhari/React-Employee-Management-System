@@ -7,6 +7,7 @@ import EmployeeUpdate from './EmployeeUpdate.jsx'
 import EmployeeDelete from './EmployeeDelete.jsx'
 import EmployeeFilter from './EmployeeFilter.jsx'
 import RetirementTable from './RetirementTable.jsx'
+import EmployeeDetail from './EmployeeDetail.jsx'
 //Employee Directory Component(Parent Component)
 export default class EmployeeDirectory extends Component {
 
@@ -71,6 +72,7 @@ export default class EmployeeDirectory extends Component {
                         <Route path='/delete/:uid'  element={<EmployeeDelete/>}/>
                         <Route path='/filter'  element={<EmployeeFilter filterData={this.state.employees}/>}/>
                         <Route path='/RetirementTable'  element={<RetirementTable empdata={this.state.employees}/>}/>
+                        <Route path='/details/:uid'  element={<EmployeeDetail/>}/>
                     </Routes>
             </>
         )

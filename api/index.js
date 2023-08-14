@@ -62,7 +62,7 @@ async function getuniqueemp(_,{ip}){
 
 //Query to get all the data for employee where age it greter than equal to 65
 async function getretiries(){
-    let ret=await employeeS.find({ age: { $gte: 65 } })
+    let ret=await employeeS.find({ age: { $gte: 64 } })
     if(ret){
       return ret
     }

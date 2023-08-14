@@ -2,6 +2,36 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 //Employee Table Component
 export default class EmployeeTable extends Component {
+  constructor(){
+    super()
+    this.state={
+      empData:[]
+    }
+  }
+  componentDidMount(){
+    let query=`query GetRetiries {
+      getRetiries {
+        _id
+        fname
+        age
+        lname
+        joindate
+        title
+        department
+        employeetype
+        currentstatus
+      }
+    }`
+    fetch('http://localhost:3000/graphql', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query})
+    }).then(res => res.json()).then(data => {
+      console.log("write worked")
+      console.log(data.data.getRetiries)
+      this.setState({empData:data.data.getRetiries})
+    })
+  }
   render() {
     console.log("retirmnrt")
     console.log(this.props.empdata)
@@ -25,7 +55,7 @@ export default class EmployeeTable extends Component {
           </thead>
           <tbody>
             {/* looping throught the data recevied frrom Employee Directory to displu on the dom using map */}
-            {this.props.empdata.map((e, i) => {
+            {this.state.empData.map((e, i) => {
               return (
                 <tr key={e._id}>
                   <td>{i + 1}</td>

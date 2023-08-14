@@ -37,7 +37,7 @@ export default class EmployeeTable extends Component {
                                 <td>{e.employeetype}</td>
                                 <td>{e.currentstatus}</td>
                                 {/* below button used to update and delete the data of employee respectively */}
-                                <td><Link className="btns" to={`update/${e._id}`}>Update</Link><Link className="btns" to={`delete/${e._id}`}>Delete</Link></td>
+                                <td><Link className="btns" to={`update/${e._id}`}>Update</Link><Link className="btns" to={`delete/${e._id}`}>Delete</Link><Link className="btns" to={`details/${e._id}`}>Details</Link></td>
                             </tr>
                         })}
                     </tbody>
