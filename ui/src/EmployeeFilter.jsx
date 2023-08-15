@@ -25,6 +25,14 @@ export default class EmployeeFilter extends Component {
         e.preventDefault()
         console.log("clciked")
         console.log(this.state.fdata)
+        if(this.state.filterParams=='Upcoming-Retirement'){
+            let fil=this.state.data.filter(e=>e.age>=64)
+            console.log(fil)
+            this.setState({
+                fdata:fil
+            })
+            return
+        }
         let filters = this.state.data.filter(e => e.employeetype == this.state.filterParams)
         console.log(filters)
         this.setState({
@@ -55,6 +63,7 @@ export default class EmployeeFilter extends Component {
                                     <option value="PartTime" >Part Time</option>
                                     <option value="Seasonal" >Seasonal</option>
                                     <option value="Contract" >Contract</option>
+                                    <option value="Upcoming-Retirement" >Upcoming-Retirement</option>
                                 </select>
                             </div>
                         </div>
