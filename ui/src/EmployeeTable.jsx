@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
- //Employee Table Component
+import { Table, Container } from 'react-bootstrap';
+
+//Employee Table Component
 export default class EmployeeTable extends Component {
     render() {
         return (
-            // table for the display of data
-            <div className="center">
-                <table>
-                    <caption>Employee's List</caption>
+            <Container className="d-flex align-items-start justify-content-center my-4" style={{ minHeight: '100vh' }}>
+                {/* table for the display of data */}
+                <Table>
                     <thead>
+                        <tr>
+                            <th colSpan="10" className="text-center fs-2">Employee List</th>
+                        </tr>
                         <tr>
                             <th>Sr.No</th>
                             <th>First Name</th>
@@ -23,11 +27,9 @@ export default class EmployeeTable extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* looping throught the data recevied frrom Employee Directory to displu on the dom using map */}
-                        {this.props.empdata.map((e, i) => {
-
-                            return <tr key={e._id}>
-                                <td>{i+1}</td>
+                        {this.props.empdata.map((e, i) => (
+                            <tr key={e._id}>
+                                <td>{i + 1}</td>
                                 <td>{e.fname}</td>
                                 <td>{e.lname}</td>
                                 <td>{e.age}</td>
@@ -36,13 +38,16 @@ export default class EmployeeTable extends Component {
                                 <td>{e.department}</td>
                                 <td>{e.employeetype}</td>
                                 <td>{e.currentstatus}</td>
-                                {/* below button used to update and delete the data of employee respectively */}
-                                <td><Link className="btns" to={`update/${e._id}`}>Update</Link><Link className="btns" to={`delete/${e._id}`}>Delete</Link><Link className="btns" to={`details/${e._id}`}>Details</Link></td>
+                                <td>
+                                    <Link className="btn btn-outline-dark mx-1" to={`update/${e._id}`}>Update</Link>
+                                    <Link className="btn btn-outline-danger mx-1" to={`delete/${e._id}`}>Delete</Link>
+                                    <Link className="btn btn-outline-success mx-1" to={`details/${e._id}`}>Details</Link>
+                                </td>
                             </tr>
-                        })}
+                        ))}
                     </tbody>
-                </table>
-            </div>
+                </Table>
+            </Container>
         )
     }
 }

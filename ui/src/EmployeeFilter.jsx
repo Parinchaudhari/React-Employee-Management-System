@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import { Container, Form, Button, Table } from 'react-bootstrap';
 export default class EmployeeFilter extends Component {
     constructor() {
         super()
@@ -25,11 +25,11 @@ export default class EmployeeFilter extends Component {
         e.preventDefault()
         console.log("clciked")
         console.log(this.state.fdata)
-        if(this.state.filterParams=='Upcoming-Retirement'){
-            let fil=this.state.data.filter(e=>e.age>=64)
+        if (this.state.filterParams == 'Upcoming-Retirement') {
+            let fil = this.state.data.filter(e => e.age >= 64)
             console.log(fil)
             this.setState({
-                fdata:fil
+                fdata: fil
             })
             return
         }
@@ -51,33 +51,37 @@ export default class EmployeeFilter extends Component {
     render() {
         // console.log(this.state)
         return (
-            <>
+            <Container className="d-flex align-items-start justify-content-between my-4" style={{ minHeight: '100vh' }}>
                 <div className="filter-form">
-                    <form className="row g-3" onSubmit={this.handledata}>
-                        <div className="data">
-
-                            <div className="inpdata" >
-                                <label htmlFor="title" className="form-label">Filter Data using Employee Type</label>
-                                <select id="employeetype" className="form-select" name='filterParams' onChange={this.handleOnchange}>
-                                    <option value="FullTime" >Full Time</option>
-                                    <option value="PartTime" >Part Time</option>
-                                    <option value="Seasonal" >Seasonal</option>
-                                    <option value="Contract" >Contract</option>
-                                    <option value="Upcoming-Retirement" >Upcoming-Retirement</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <button type="submit" onClick={this.handleClick} className="btn">Filter Employee</button>
-
-                        </div>
-                    </form>
+                    <Form className="row g-3" onSubmit={this.handleData}>
+                        <Form.Group className="data">
+                            <Form.Label htmlFor="employeetype" className="form-label fs-6 fw-bold">
+                                Filter Data using Employee Type
+                            </Form.Label>
+                            <Form.Select
+                                id="employeetype"
+                                className="form-select"
+                                name="filterParams"
+                                onChange={this.handleOnchange}
+                            >
+                                <option value="FullTime">Full Time</option>
+                                <option value="PartTime">Part Time</option>
+                                <option value="Seasonal">Seasonal</option>
+                                <option value="Contract">Contract</option>
+                                <option value="Upcoming-Retirement">Upcoming-Retirement</option>
+                            </Form.Select>
+                        </Form.Group>
+                        <Button type="submit" onClick={this.handleClick} className="btn">
+                            Filter Employee
+                        </Button>
+                    </Form>
                 </div>
                 <div className="center">
-                    <table>
-                        <caption>Filtered Employee List Based</caption>
+                    <Table striped bordered hover>
                         <thead>
+                            <tr>
+                                <th colSpan="10" className="text-center fs-2">Filtered Employee List</th>
+                            </tr>
                             <tr>
                                 <th>Sr.No</th>
                                 <th>First Name</th>
@@ -91,25 +95,26 @@ export default class EmployeeFilter extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* looping throught the data recevied frrom Employee Directory to displu on the dom using map */}
+                            {/* Looping through the data received from Employee Directory to display on the DOM using map */}
                             {this.state.fdata.map((e, i) => {
-
-                                return <tr key={e._id}>
-                                    <td>{i + 1}</td>
-                                    <td>{e.fname}</td>
-                                    <td>{e.lname}</td>
-                                    <td>{e.age}</td>
-                                    <td>{e.joindate}</td>
-                                    <td>{e.title}</td>
-                                    <td>{e.department}</td>
-                                    <td>{e.employeetype}</td>
-                                    <td>{e.currentstatus}</td>
-                                </tr>
+                                return (
+                                    <tr key={e._id}>
+                                        <td>{i + 1}</td>
+                                        <td>{e.fname}</td>
+                                        <td>{e.lname}</td>
+                                        <td>{e.age}</td>
+                                        <td>{e.joindate}</td>
+                                        <td>{e.title}</td>
+                                        <td>{e.department}</td>
+                                        <td>{e.employeetype}</td>
+                                        <td>{e.currentstatus}</td>
+                                    </tr>
+                                );
                             })}
                         </tbody>
-                    </table>
+                    </Table>
                 </div>
-            </>
+            </Container>
         )
     }
 }

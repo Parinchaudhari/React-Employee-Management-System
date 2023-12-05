@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Container, Table } from 'react-bootstrap';
+
 
 export default class EmployeeDetail extends Component {
     constructor() {
@@ -54,8 +56,8 @@ export default class EmployeeDetail extends Component {
         console.log(final_retirment_date)
 
         //creating new date varibale with current date and retirement date 
-        const startDate_countdown = new Date(currentDate); 
-        const endDate_countdown = new Date(final_retirment_date); 
+        const startDate_countdown = new Date(currentDate);
+        const endDate_countdown = new Date(final_retirment_date);
 
         //calulating the no of years,days and months left in retirement 
         let yearDiff = endDate_countdown.getFullYear() - startDate_countdown.getFullYear();
@@ -79,9 +81,9 @@ export default class EmployeeDetail extends Component {
         console.log(`Days: ${dayDiff}`);
         //setting the coundown to state
         this.setState({
-            countdowndays:dayDiff,
-            countdownmonths:monthDiff,
-            countdownyears:yearDiff
+            countdowndays: dayDiff,
+            countdownmonths: monthDiff,
+            countdownyears: yearDiff
         })
         return final_retirment_date
 
@@ -130,10 +132,12 @@ export default class EmployeeDetail extends Component {
     }
     render() {
         return (
-            <div className="center">
-                <table>
-                    <caption>Employee's List</caption>
+            <Container className="d-flex align-items-start justify-content-center my-4" style={{ minHeight: '100vh' }}>
+                <Table striped bordered hover>
                     <thead>
+                        <tr>
+                            <th colSpan="10" className="text-center fs-2">Employee List</th>
+                        </tr>
                         <tr>
                             <th>First Name</th>
                             <th>Last Name</th>
@@ -161,8 +165,8 @@ export default class EmployeeDetail extends Component {
                             <td>Years: {this.state.countdownyears} Months: {this.state.countdownmonths} Days: {this.state.countdowndays}</td>
                         </tr>
                     </tbody>
-                </table>
-            </div>
+                </Table>
+            </Container>
         )
     }
 }

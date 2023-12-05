@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Container, Table } from 'react-bootstrap';
+
 //Employee Table Component
 export default class EmployeeTable extends Component {
-  constructor(){
+  constructor() {
     super()
-    this.state={
-      empData:[]
+    this.state = {
+      empData: []
     }
   }
-  componentDidMount(){
-    let query=`query GetRetiries {
+  componentDidMount() {
+    let query = `query GetRetiries {
       getRetiries {
         _id
         fname
@@ -25,22 +26,24 @@ export default class EmployeeTable extends Component {
     fetch('http://localhost:3000/graphql', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query})
+      body: JSON.stringify({ query })
     }).then(res => res.json()).then(data => {
       console.log("write worked")
       console.log(data.data.getRetiries)
-      this.setState({empData:data.data.getRetiries})
+      this.setState({ empData: data.data.getRetiries })
     })
   }
   render() {
     console.log("retirmnrt")
     console.log(this.props.empdata)
     return (
-      // table for the display of data
-      <div className="center">
-        <table>
-          <caption>Employee's List</caption>
+      <Container className="d-flex align-items-start justify-content-center my-4" style={{ minHeight: '100vh' }}>
+        {/* table for the display of data */}
+        <Table striped bordered hover>
           <thead>
+            <tr>
+              <th colSpan="9" className="text-center fs-2">Upcoming Retirement Employee List</th>
+            </tr>
             <tr>
               <th>Sr.No</th>
               <th>First Name</th>
@@ -54,7 +57,7 @@ export default class EmployeeTable extends Component {
             </tr>
           </thead>
           <tbody>
-            {/* looping throught the data recevied frrom Employee Directory to displu on the dom using map */}
+            {/* Looping through the data received from Employee Directory to display on the DOM using map */}
             {this.state.empData.map((e, i) => {
               return (
                 <tr key={e._id}>
@@ -71,8 +74,8 @@ export default class EmployeeTable extends Component {
               );
             })}
           </tbody>
-        </table>
-      </div>
+        </Table>
+      </Container>
     );
   }
 }

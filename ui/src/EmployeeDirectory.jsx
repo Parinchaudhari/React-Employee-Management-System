@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import EmployeeTable from "./EmployeeTable.jsx"
 import EmployeeCreate from './EmployeeCreate.jsx'
-import Navbar from "./Navbar.jsx"
+import Navbar from "./Navigation.jsx"
 import { Route, Routes} from 'react-router-dom'
 import EmployeeUpdate from './EmployeeUpdate.jsx'
 import EmployeeDelete from './EmployeeDelete.jsx'

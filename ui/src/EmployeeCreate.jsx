@@ -1,4 +1,9 @@
 import React, { Component } from 'react'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 //Employee Create Component
 export default class EmployeeCreate extends Component {
     constructor() {
@@ -42,7 +47,7 @@ export default class EmployeeCreate extends Component {
                     error: true
                 }
             }))
-            // console.log(this.state.fname.error)
+            console.log(this.state.fname.error)
         }
 
         //setting the state of value if name does not have a special character
@@ -54,7 +59,7 @@ export default class EmployeeCreate extends Component {
                 }
             })
         }
-        // console.log(this.state.fname.value)
+        console.log(this.state.fname.value)
     }
 
     //below fucntion is used to checkn errors for last name
@@ -197,83 +202,106 @@ export default class EmployeeCreate extends Component {
     }
     render() {
         return (
-            <>
-
-            {/* below is the form to enetr the data */}
-                <h1 className="ts">Create Employee Form</h1>
-                <div className="forms">
-                    <form className="row g-3" onSubmit={this.handledata}>
-                        <div className="data">
-
-                            <div className="inpdata" >
-                                <label htmlFor="fname" className="form-label">First Name</label>
-                                <input type="text" onChange={this.fnameonchange} className="form-control" id="fname" required />
-                                {/* the bloew paragraph will display when their is error when data enter durning on change evnt for spcial chhareater error */}
-                                <p style={{ color: "red", display: this.state.fname.error ? "block" : "none" }}>No Special Charater is Valid</p>
-                            </div>
-                            <div className="inpdata" >
-                                <label htmlFor="lname" className="form-label">Last Name</label>
-                                <input type="text" onChange={this.lnameonchange} className="form-control" id="lname" required />
-                                {/* the bloew paragraph will display when their is error when data enter durning on change evnt for spcial chhareater error */}
-                                <p style={{ color: "red", display: this.state.lname.error ? "block" : "none" }}>No Special Charater is Valid</p>
-                            </div>
-
-                        </div>
-                        <div className="data">
-
-                            <div className="inpdata" >
-                                <label htmlFor="age" className="form-label">Age</label>
-                                <input type="number" onChange={this.ageonchange} className="form-control" id="age" required />
-                                {/* the bloew paragraph will display when their is error when data enter durning on change evnt for age  error */}
-                                <p style={{ color: "red", display: this.state.age.error ? "block" : "none" }}>Age Should a Number and between 20 and 70</p>
-                            </div>
-                            <div className="inpdata" >
-                                <label htmlFor="joindate" className="form-label">Joinging Date</label>
-                                <input type="date" className="form-control" required id="joindate" />
-                            </div>
-                        </div>
-
-
-                        <div className="data">
-
-                            <div className="inpdata" >
-                                <label htmlFor="title" className="form-label">Title</label>
-                                <select id="title" className="form-select">
-                                    <option value="Employee" >Employee</option>
-                                    <option value="Manager" >Manager</option>
-                                    <option value="Director" >Director</option>
-                                    <option value="VP" >VP</option>
-                                </select>
-                            </div>
-                            <div className="inpdata" >
-                                <label htmlFor="title" className="form-label">Department</label>
-                                <select id="department" className="form-select">
-                                    <option value="IT" >IT</option>
-                                    <option value="Marketing" >Marketing</option>
-                                    <option value="HR" >HR</option>
-                                    <option value="Engineering" >Engineering</option>
-                                </select>
-                            </div>
-                            <div className="inpdata" >
-                                <label htmlFor="title" className="form-label">Employee Type</label>
-                                <select id="employeetype" className="form-select">
-                                    <option value="FullTime" >Full Time</option>
-                                    <option value="PartTime" >Part Time</option>
-                                    <option value="Seasonal" >Seasonal</option>
-                                    <option value="Contract" >Contract</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            {/* below sublit button will be displayed if their are no error in the fields enetred */}
-                            {(!this.state.fname.error && !this.state.lname.error && !this.state.age.error) && (
-                                <button type="submit" className="btn">Add Employee</button>
-                            )
-                            }
-                        </div>
-                    </form>
-                </div>
-            </>
+            <Container>
+            <h1 className="ts my-4">Create Employee Form</h1>
+            <Form onSubmit={this.handledata}>
+              <Row className="mb-3">
+                <Col>
+                  <Form.Group>
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      onChange={this.fnameonchange}
+                      isInvalid={this.state.fname.error}
+                      required
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      No Special Character is Valid
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group>
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      onChange={this.lnameonchange}
+                      isInvalid={this.state.lname.error}
+                      required
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      No Special Character is Valid
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Col>
+              </Row>
+    
+              <Row className="mb-3">
+                <Col>
+                  <Form.Group>
+                    <Form.Label>Age</Form.Label>
+                    <Form.Control
+                      type="number"
+                      onChange={this.ageonchange}
+                      isInvalid={this.state.age.error}
+                      required
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Age Should be a Number and between 20 and 70
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group>
+                    <Form.Label>Joining Date</Form.Label>
+                    <Form.Control type="date" required id="joindate" />
+                  </Form.Group>
+                </Col>
+              </Row>
+    
+              <Row className="mb-3">
+                <Col>
+                  <Form.Group>
+                    <Form.Label>Title</Form.Label>
+                    <Form.Select id="title">
+                      <option value="Employee">Employee</option>
+                      <option value="Manager">Manager</option>
+                      <option value="Director">Director</option>
+                      <option value="VP">VP</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group>
+                    <Form.Label>Department</Form.Label>
+                    <Form.Select id="department">
+                      <option value="IT">IT</option>
+                      <option value="Marketing">Marketing</option>
+                      <option value="HR">HR</option>
+                      <option value="Engineering">Engineering</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group>
+                    <Form.Label>Employee Type</Form.Label>
+                    <Form.Select id="employeetype">
+                      <option value="FullTime">Full Time</option>
+                      <option value="PartTime">Part Time</option>
+                      <option value="Seasonal">Seasonal</option>
+                      <option value="Contract">Contract</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+              </Row>
+    
+              {(!this.state.fname.error && !this.state.lname.error && !this.state.age.error) && (
+                <Button type="submit" className="btn">
+                  Add Employee
+                </Button>
+              )}
+            </Form>
+          </Container>
         )
     }
 }

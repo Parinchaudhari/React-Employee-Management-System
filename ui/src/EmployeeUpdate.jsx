@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Container, Form, Button, Row, Col } from 'react-bootstrap';
+
 export default class EmployeeUpdate extends Component {
   constructor() {
     super()
@@ -161,85 +163,78 @@ export default class EmployeeUpdate extends Component {
   render() {
     console.log(this.state)
     return (
-      <>
-        <h1 className="ts">Update Employee Form</h1>
+      <Container>
+        <h1 className="ts my-4">Update Employee Form</h1>
         <div className='center'>
           <div className="forms">
-            <form className="row g-3" >
-              <div className="data">
-
-                <div className="inpdata" >
-                  <label htmlFor="fname" className="form-label">First Name</label>
-                  <input type="text" className="form-control" value={this.state.fname.value} id="fname" disabled />
-                </div>
-                <div className="inpdata" >
-                  <label htmlFor="lname" className="form-label">Last Name</label>
-                  <input type="text" className="form-control" value={this.state.lname.value} id="lname" disabled />
-                </div>
-
-              </div>
-              <div className="data">
-
-                <div className="inpdata" >
-                  <label htmlFor="age" className="form-label">Age</label>
-                  <input type="number" className="form-control" value={this.state.age.value} id="age" disabled />
-                </div>
-                <div className="inpdata" >
-                  <label htmlFor="joindate" className="form-label">Joinging Date</label>
-                  <input type="text" className="form-control" value={this.state.joindate.value} id="joindate" disabled />
-                </div>
-              </div>
-
-              <div className="data">
-
-                <div className="inpdata" >
-                  <label htmlFor="title" className="form-label">Title</label>
-                  <select id="title" value={this.state.title.value} onChange={this.handleOnchange} name="title" className="form-select">
-                    <option value="Employee" >Employee</option>
-                    <option value="Manager" >Manager</option>
-                    <option value="Director" >Director</option>
-                    <option value="VP" >VP</option>
-                  </select>
-                </div>
-                <div className="inpdata" >
-                  <label htmlFor="title" className="form-label">Department</label>
-                  <select id="department" value={this.state.department.value} onChange={this.handleOnchange} name='department' className="form-select">
-                    <option value="IT" >IT</option>
-                    <option value="Marketing" >Marketing</option>
-                    <option value="HR" >HR</option>
-                    <option value="Engineering" >Engineering</option>
-                  </select>
-                </div>
-                <div className="inpdata" >
-                  <label htmlFor="title" className="form-label">Employee Type</label>
-                  <select id="employeetype" className="form-select" value={this.state.employeetype.value} disabled>
-                    <option value="FullTime" >Full Time</option>
-                    <option value="PartTime" >Part Time</option>
-                    <option value="Seasonal" >Seasonal</option>
-                    <option value="Contract" >Contract</option>
-                  </select>
-                </div>
-              </div>
-              <div className="inpdata" >
-                <label htmlFor="title" className="form-label">Current Status</label>
-                <select className="form-select" value={this.state.currentstatus.value} onChange={this.handleOnchange} id="currentstatus" name='currentstatus' required>
-                  <option value="1" >1</option>
-                  <option value="0" >0</option>
-                </select>
-              </div>
-              {/* <div className="inpdata" >
-                <label htmlFor="currentstatus" className="form-label">Current Status</label>
-                <input type="text" className="form-control" value={this.state.currentstatus.value} onChange={this.handleOnchange} id="currentstatus" name='currentstatus' required />
-              </div> */}
-              <div>
-
-                <button type="submit" onClick={this.updateEmployee} className="btn">Update Employee</button>
-
-              </div>
-            </form>
+            <Form className="row g-3">
+              <Row className='my-2'>
+                <Col>
+                  <Form.Label htmlFor="fname" className="form-label">First Name</Form.Label>
+                  <Form.Control type="text" className="form-control" value={this.state.fname.value} id="fname" disabled />
+                </Col>
+                <Col>
+                  <Form.Label htmlFor="lname" className="form-label">Last Name</Form.Label>
+                  <Form.Control type="text" className="form-control" value={this.state.lname.value} id="lname" disabled />
+                </Col>
+              </Row>
+              <Row className='my-2'>
+                <Col>
+                  <Form.Label htmlFor="age" className="form-label">Age</Form.Label>
+                  <Form.Control type="number" className="form-control" value={this.state.age.value} id="age" disabled />
+                </Col>
+                <Col>
+                  <Form.Label htmlFor="joindate" className="form-label">Joining Date</Form.Label>
+                  <Form.Control type="text" className="form-control" value={this.state.joindate.value} id="joindate" disabled />
+                </Col>
+              </Row>
+              <Row className='my-2'>
+                <Col>
+                  <Form.Label htmlFor="title" className="form-label">Title</Form.Label>
+                  <Form.Select id="title" value={this.state.title.value} onChange={this.handleOnchange} name="title">
+                    <option value="Employee">Employee</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Director">Director</option>
+                    <option value="VP">VP</option>
+                  </Form.Select>
+                </Col>
+                <Col>
+                  <Form.Label htmlFor="department" className="form-label">Department</Form.Label>
+                  <Form.Select id="department" value={this.state.department.value} onChange={this.handleOnchange} name='department'>
+                    <option value="IT">IT</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="HR">HR</option>
+                    <option value="Engineering">Engineering</option>
+                  </Form.Select>
+                </Col>
+                <Col>
+                  <Form.Label htmlFor="employeetype" className="form-label">Employee Type</Form.Label>
+                  <Form.Select id="employeetype" className="form-select" value={this.state.employeetype.value} disabled>
+                    <option value="FullTime">Full Time</option>
+                    <option value="PartTime">Part Time</option>
+                    <option value="Seasonal">Seasonal</option>
+                    <option value="Contract">Contract</option>
+                  </Form.Select>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Form.Label htmlFor="currentstatus" className="form-label">Current Status</Form.Label>
+                  <Form.Select className="form-select" value={this.state.currentstatus.value} onChange={this.handleOnchange} id="currentstatus" name='currentstatus' required>
+                    <option value="1">1</option>
+                    <option value="0">0</option>
+                  </Form.Select>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Button type="submit" onClick={this.updateEmployee} className="btn my-4">Update Employee</Button>
+                </Col>
+              </Row>
+            </Form>
           </div>
         </div>
-      </>
+      </Container>
     )
   }
 }
